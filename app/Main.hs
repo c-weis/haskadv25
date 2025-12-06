@@ -1,6 +1,7 @@
 module Main where
 
 import Day01
+import Day02
 import Options.Applicative
 import Text.Printf
 
@@ -44,7 +45,10 @@ data Setup = Setup
   {solver :: String -> String, filePath :: String}
 
 setupList :: [(Setup, Setup)]
-setupList = [(Setup Day01.problem1 "inputs/day01/input01.in", Setup Day01.problem2 "inputs/day01/input01.in")]
+setupList = [
+  (Setup Day01.problem1 "inputs/day01/input01.in", Setup Day01.problem2 "inputs/day01/input01.in"),
+  (Setup Day02.problem1 "inputs/day02/input01.in", Setup Day02.problem2 "inputs/day02/input01.in")
+  ]
 
 setup :: Int -> Int -> Setup
 setup d p
