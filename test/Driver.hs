@@ -4,43 +4,58 @@ import Data.FileEmbed
 import Data.List
 import Data.Ord
 import Day01
+import qualified Day02
 import Test.Tasty
 import Test.Tasty.HUnit
+import Text.Printf
 
 main = defaultMain tests
 
-tests :: TestTree
-tests = testGroup "Tests" [day01]
+type ProblemSolver = String -> String
+
+data TestData = TestData
+  { solver :: ProblemSolver,
+    input :: String,
+    exp_output :: String
+  }
+
+-- TODO: figure out what's wrong here...
+-- assertionFromData :: TestData -> Assertion
+-- assertionFromData (TestData solv inp expo) = solver inp @?= expo
 
 -- TODO: figure out how to do autodiscovery & split tests into modules
 -- TODO: figure out how to run tests involving IO
-test_data :: (Int, Int) -> [(String, String)]
-test_data (1, 1) = [($(embedStringFile "test/inputs/day01/test01.in"), "3")]
-test_data (1, 2) = [($(embedStringFile "test/inputs/day01/test01.in"), "6")]
+testTreeData :: [(String, [TestData])]
+testTreeData =
+  [ ( "Day01",
+      [ TestData
+          Day01.problem1
+          $(embedStringFile "test/inputs/day01/test01.in")
+          "3",
+        TestData
+          Day01.problem2
+          $(embedStringFile "test/inputs/day01/test01.in")
+          "6"
+      ]
+    ),
+    ( "Day02",
+      [ TestData
+          Day02.problem1
+          $(embedStringFile "test/inputs/day02/test01.in")
+          "1227775554",
+        TestData
+          Day02.problem2
+          $(embedStringFile "test/inputs/day02/test01.in")
+          "4174379265"
+      ]
+    )
+  ]
 
-day01 =
-  testGroup
-    "Day01"
-    [day01p1, day01p2]
+testFromData :: String -> TestData -> TestTree
+testFromData name (TestData solv inp expo) = testCase name (solv inp @?= expo)
 
-day01p1 =
-  testGroup
-    "Day01 Part1"
-    [ testCase
-        ("Day01 Part1 Test" ++ show idx)
-        ( Day01.problem1 inp
-            @?= exp_out
-        )
-      | (idx, (inp, exp_out)) <- zip [1 ..] $ test_data (1, 1)
-    ]
+testGroupFromData :: (String, [TestData]) -> TestTree
+testGroupFromData (name, tds) = testGroup name [testFromData (printf "Test%d" idx) test | (idx, test) <- zip [1 :: Int ..] tds]
 
-day01p2 =
-  testGroup
-    "Day01 Part2"
-    [ testCase
-        ("Day01 Part2 Test" ++ show idx)
-        ( Day01.problem2 inp
-            @?= exp_out
-        )
-      | (idx, (inp, exp_out)) <- zip [1 ..] $ test_data (1, 2)
-    ]
+tests :: TestTree
+tests = testGroup "Tests" $ map testGroupFromData testTreeData
