@@ -56,6 +56,8 @@ library hask-adv25
     exposed-modules:
         Day01
         Day02
+        Day03
+        Day04
     build-depends: 
         base,
         split

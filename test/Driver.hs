@@ -4,7 +4,9 @@ import Data.FileEmbed
 import Data.List
 import Data.Ord
 import Day01
-import qualified Day02
+import Day02
+import Day03
+import Day04
 import Test.Tasty
 import Test.Tasty.HUnit
 import Text.Printf
@@ -47,6 +49,28 @@ testTreeData =
           Day02.problem2
           $(embedStringFile "test/inputs/day02/test01.in")
           "4174379265"
+      ]
+    ),
+    ( "Day03",
+      [ TestData
+          Day03.problem1
+          $(embedStringFile "test/inputs/day03/test01.in")
+          "357",
+        TestData
+          Day03.problem2
+          $(embedStringFile "test/inputs/day03/test01.in")
+          "3121910778619"
+      ]
+    ),
+    ( "Day04",
+      [ TestData
+          Day04.problem1
+          $(embedStringFile "test/inputs/day04/test01.in")
+          "13",
+        TestData
+          Day04.problem2
+          $(embedStringFile "test/inputs/day04/test01.in")
+          "43"
       ]
     )
   ]

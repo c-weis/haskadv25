@@ -2,6 +2,8 @@ module Main where
 
 import Day01
 import Day02
+import Day03
+import Day04
 import Options.Applicative
 import Text.Printf
 
@@ -47,7 +49,9 @@ data Setup = Setup
 setupList :: [(Setup, Setup)]
 setupList = [
   (Setup Day01.problem1 "inputs/day01/input01.in", Setup Day01.problem2 "inputs/day01/input01.in"),
-  (Setup Day02.problem1 "inputs/day02/input01.in", Setup Day02.problem2 "inputs/day02/input01.in")
+  (Setup Day02.problem1 "inputs/day02/input01.in", Setup Day02.problem2 "inputs/day02/input01.in"),
+  (Setup Day03.problem1 "inputs/day03/input01.in", Setup Day03.problem2 "inputs/day03/input01.in"),
+  (Setup Day04.problem1 "inputs/day04/input01.in", Setup Day04.problem2 "inputs/day04/input01.in")
   ]
 
 setup :: Int -> Int -> Setup
