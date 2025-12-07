@@ -1,5 +1,3 @@
--- stacks :: String -> [[Bool]]
-
 module Day04 (problem1, problem2) where
 
 type PaperGrid = [[Bool]]
