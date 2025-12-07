@@ -7,6 +7,7 @@ import Day01
 import Day02
 import Day03
 import Day04
+import Day05
 import Test.Tasty
 import Test.Tasty.HUnit
 import Text.Printf
@@ -20,10 +21,6 @@ data TestData = TestData
     input :: String,
     exp_output :: String
   }
-
--- TODO: figure out what's wrong here...
--- assertionFromData :: TestData -> Assertion
--- assertionFromData (TestData solv inp expo) = solver inp @?= expo
 
 -- TODO: figure out how to do autodiscovery & split tests into modules
 -- TODO: figure out how to run tests involving IO
@@ -71,6 +68,17 @@ testTreeData =
           Day04.problem2
           $(embedStringFile "test/inputs/day04/test01.in")
           "43"
+      ]
+    ),
+    ( "Day05",
+      [ TestData
+          Day05.problem1
+          $(embedStringFile "test/inputs/day05/test01.in")
+          "3",
+        TestData
+          Day05.problem2
+          $(embedStringFile "test/inputs/day05/test01.in")
+          "14"
       ]
     )
   ]
