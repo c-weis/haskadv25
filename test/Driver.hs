@@ -9,6 +9,7 @@ import Day03
 import Day04
 import Day05
 import Day06
+import Day07
 import Test.Tasty
 import Test.Tasty.HUnit
 import Text.Printf
@@ -91,6 +92,17 @@ testTreeData =
           Day06.problem2
           $(embedStringFile "test/inputs/day06/test01.in")
           "3263827"
+      ]
+    ),
+    ( "Day07",
+      [ TestData
+          Day07.problem1
+          $(embedStringFile "test/inputs/day07/test01.in")
+          "21",
+        TestData
+          Day07.problem2
+          $(embedStringFile "test/inputs/day07/test01.in")
+          "40"
       ]
     )
   ]

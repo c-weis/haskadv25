@@ -60,6 +60,7 @@ library hask-adv25
         Day04
         Day05
         Day06
+        Day07
     build-depends: 
         base,
         split
