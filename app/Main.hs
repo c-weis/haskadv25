@@ -7,6 +7,7 @@ import Day04
 import Day05
 import Day06
 import Day07
+import Day08
 import Options.Applicative
 import Text.Printf
 
@@ -57,7 +58,8 @@ setupList = [
   (Setup Day04.problem1 "inputs/day04/input01.in", Setup Day04.problem2 "inputs/day04/input01.in"),
   (Setup Day05.problem1 "inputs/day05/input01.in", Setup Day05.problem2 "inputs/day05/input01.in"),
   (Setup Day06.problem1 "inputs/day06/input01.in", Setup Day06.problem2 "inputs/day06/input01.in"),
-  (Setup Day07.problem1 "inputs/day07/input01.in", Setup Day07.problem2 "inputs/day07/input01.in")
+  (Setup Day07.problem1 "inputs/day07/input01.in", Setup Day07.problem2 "inputs/day07/input01.in"),
+  (Setup Day08.problem1 "inputs/day08/input01.in", Setup Day08.problem2 "inputs/day08/input01.in")
   ]
 
 setup :: Int -> Int -> Setup

@@ -1,6 +1,6 @@
 module Day02 (problem1, problem2) where
 
-import Data.List.Split
+import Utils (splitOnAll)
 
 dropHalf :: [a] -> [a]
 dropHalf xs = drop (div (length xs) 2) xs
@@ -18,10 +18,10 @@ rangeFromTuple :: (Int, Int) -> [Int]
 rangeFromTuple (x, y) = [x .. y]
 
 ranger :: String -> [Int]
-ranger range_text = rangeFromTuple . tupler $ map read (splitOn "-" range_text)
+ranger range_text = rangeFromTuple . tupler $ map read (splitOnAll '-' range_text)
 
 numbers :: String -> [Int]
-numbers = concatMap ranger . splitOn ","
+numbers = concatMap ranger . splitOnAll ','
 
 problem1 :: String -> String
 problem1 s = show $ sum $ filter (isDoubled . show) (numbers s)

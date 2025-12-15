@@ -61,9 +61,11 @@ library hask-adv25
         Day05
         Day06
         Day07
+        Day08
+        Utils
     build-depends: 
-        base,
-        split
+        containers ^>=0.6.7, 
+        base
 
 executable adv-runner-25
     import:           warnings

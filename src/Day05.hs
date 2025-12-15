@@ -1,6 +1,7 @@
 module Day05 (problem1, problem2) where
 
-import Data.Bifunctor (Bifunctor (bimap, first))
+import Data.Bifunctor (Bifunctor (bimap))
+import Utils (splitOnFirst)
 
 data Range = Range
   { left :: Int,
@@ -17,16 +18,10 @@ data IngredientData = IngredientData
   }
   deriving (Show)
 
-splitOn :: (Eq a) => a -> [a] -> ([a], [a])
-splitOn _ [] = ([], [])
-splitOn y (x : xs)
-  | x == y = ([], xs)
-  | otherwise = first ([x] ++) $ splitOn y xs
-
 parse :: String -> IngredientData
-parse = uncurry IngredientData . bimap (map parseRange) (map read) . splitOn "" . lines
+parse = uncurry IngredientData . bimap (map parseRange) (map read) . splitOnFirst "" . lines
   where
-    parseRange = uncurry Range . bimap read read . splitOn '-'
+    parseRange = uncurry Range . bimap read read . splitOnFirst '-'
 
 freshIngredients :: IngredientData -> [Int]
 freshIngredients (IngredientData rs is) = filter (\i -> any (elem' i) rs) is
