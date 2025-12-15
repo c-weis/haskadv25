@@ -14,8 +14,8 @@ readOp "*" = (*)
 readOp s = error $ "Parsing error: '" ++ s ++ "' is not a valid op."
 
 data Homework = Homework
-  { numberLines :: [[Integer]],
-    ops :: [Op]
+  { _numberLines :: [[Integer]],
+    _ops :: [Op]
   }
 
 parse :: [Char] -> Homework
@@ -26,18 +26,18 @@ parse s = Homework (map (map read) (init inputStrings)) (map readOp $ last input
 reduce :: Homework -> Integer
 reduce (Homework [] _) = 0
 reduce (Homework [l] _) = sum l
-reduce (Homework (l1 : l2 : ls) os) = reduce $ Homework ([o x1 x2 | (o, x1, x2) <- zip3 os l1 l2] : ls) os
+reduce (Homework (l1 : l2 : ls) ops) = reduce $ Homework ([o x1 x2 | (o, x1, x2) <- zip3 ops l1 l2] : ls) ops
 
 problem1 :: String -> String
 problem1 = show . reduce . parse
 
 data ColumnProblem = ColumnProblem
-  { numbers :: [Integer],
-    op :: Op
+  { _numbers :: [Integer],
+    _op :: Op
   }
 
 extend :: ColumnProblem -> Integer -> ColumnProblem
-extend (ColumnProblem xs o) x = ColumnProblem (x : xs) o
+extend (ColumnProblem nums op) x = ColumnProblem (x : nums) op
 
 readColumnsLTR :: [[a]] -> [[a]]
 readColumnsLTR [] = []
@@ -58,15 +58,14 @@ columnParse s
 parseProblem :: [String] -> ColumnProblem
 parseProblem cols = foldl extend baseProblem nums
   where
-    baseProblem = let (n, o) = head . rights $ map columnParse cols in ColumnProblem [n] o
+    baseProblem = let (n, op) = head . rights $ map columnParse cols in ColumnProblem [n] op
     nums = lefts (map columnParse cols)
 
 solve :: ColumnProblem -> Integer
-solve (ColumnProblem ns o) = foldl1 o ns
+solve (ColumnProblem nums op) = foldl1 op nums
 
 parse2 :: String -> [ColumnProblem]
 parse2 = map parseProblem . splitOnBlankColumns . readColumnsLTR . lines
 
 problem2 :: String -> String
---problem2 = show . readColumnsLTR . lines
 problem2 = show . sum . map solve . parse2
