@@ -63,6 +63,7 @@ library hask-adv25
         Day07
         Day08
         Day09
+        Day10
         Utils
     build-depends: 
         containers ^>=0.6.7, 

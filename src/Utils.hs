@@ -17,7 +17,7 @@ splitWhen :: Pred a -> [a] -> ([a], [a])
 splitWhen _ [] = ([], [])
 splitWhen p (y : ys)
   | p y = ([], ys)
-  | otherwise = first ([y] ++) (splitWhen p ys)
+  | otherwise = first (y :) (splitWhen p ys)
 
 splitWhenever :: Pred a -> [a] -> [[a]]
 splitWhenever p ys = filter (not . empty) $ map fst $ takeWhile ((not . empty) . uncurry (++)) $ iterate (splitWhen p . snd) ([], ys)
