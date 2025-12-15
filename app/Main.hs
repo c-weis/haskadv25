@@ -52,14 +52,14 @@ data Setup = Setup
 
 setupList :: [(Setup, Setup)]
 setupList = [
-  (Setup Day01.problem1 "inputs/day01/input01.in", Setup Day01.problem2 "inputs/day01/input01.in"),
-  (Setup Day02.problem1 "inputs/day02/input01.in", Setup Day02.problem2 "inputs/day02/input01.in"),
-  (Setup Day03.problem1 "inputs/day03/input01.in", Setup Day03.problem2 "inputs/day03/input01.in"),
-  (Setup Day04.problem1 "inputs/day04/input01.in", Setup Day04.problem2 "inputs/day04/input01.in"),
-  (Setup Day05.problem1 "inputs/day05/input01.in", Setup Day05.problem2 "inputs/day05/input01.in"),
-  (Setup Day06.problem1 "inputs/day06/input01.in", Setup Day06.problem2 "inputs/day06/input01.in"),
-  (Setup Day07.problem1 "inputs/day07/input01.in", Setup Day07.problem2 "inputs/day07/input01.in"),
-  (Setup Day08.problem1 "inputs/day08/input01.in", Setup Day08.problem2 "inputs/day08/input01.in")
+  (Setup Day01.problem1 "inputs/day01.in", Setup Day01.problem2 "inputs/day01.in"),
+  (Setup Day02.problem1 "inputs/day02.in", Setup Day02.problem2 "inputs/day02.in"),
+  (Setup Day03.problem1 "inputs/day03.in", Setup Day03.problem2 "inputs/day03.in"),
+  (Setup Day04.problem1 "inputs/day04.in", Setup Day04.problem2 "inputs/day04.in"),
+  (Setup Day05.problem1 "inputs/day05.in", Setup Day05.problem2 "inputs/day05.in"),
+  (Setup Day06.problem1 "inputs/day06.in", Setup Day06.problem2 "inputs/day06.in"),
+  (Setup Day07.problem1 "inputs/day07.in", Setup Day07.problem2 "inputs/day07.in"),
+  (Setup Day08.problem1 "inputs/day08.in", Setup Day08.problem2 "inputs/day08.in")
   ]
 
 setup :: Int -> Int -> Setup

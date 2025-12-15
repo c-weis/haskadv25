@@ -23,4 +23,5 @@ cabal.project.local~
 .ghc.environment.*
 
 # AoC-specific
-input*.in
+inputs/
+!test/inputs
