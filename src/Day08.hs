@@ -4,7 +4,7 @@ import Data.Function (on)
 import Data.List (partition, sortBy)
 import Data.Ord (Down (Down), comparing)
 import Data.Set (Set, fromList, intersection, size, unions)
-import Utils (splitOnAll)
+import Utils (splitOnAll, unorderedDistinctPairs)
 
 data Box = Box
   { x :: Int,
@@ -26,18 +26,8 @@ parseLine l = case map read $ splitOnAll ',' l of
 parse :: String -> [Box]
 parse = map parseLine . lines
 
-pairs :: [Box] -> [BoxPair]
-pairs boxes =
-  [ (boxes !! left, boxes !! right)
-    | left <- [0 .. maxIdx],
-      right <- [0 .. maxIdx],
-      left < right
-  ]
-  where
-    maxIdx = length boxes - 1
-
 sortedPairs :: [Box] -> [BoxPair]
-sortedPairs = sortBy (compare `on` sqDist) . pairs
+sortedPairs = sortBy (compare `on` sqDist) . unorderedDistinctPairs
 
 type Circuit = Set Box
 

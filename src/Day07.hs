@@ -6,12 +6,12 @@ riskyElemIndex x ys = head [idx | (y, idx) <- zip ys [0 ..], x == y]
 type SplitterMask = [Bool]
 
 data TachyonManifold = TachyonManifold
-  { startPos :: Int,
-    splitters :: [SplitterMask]
+  { _startPos :: Int,
+    _splitters :: [SplitterMask]
   }
 
 data TachyonState = TachyonState
-  { positions :: [Int],
+  { _positions :: [Int],
     splitsSoFar :: Int
   }
 

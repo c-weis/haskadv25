@@ -1,4 +1,7 @@
+{-# LANGUAGE TupleSections #-}
+
 module Utils where
+
 import Data.Bifunctor (first)
 
 type Pred a = (a -> Bool)
@@ -24,3 +27,10 @@ splitOnFirst = splitWhen . is
 
 splitOnAll :: (Eq a) => a -> [a] -> [[a]]
 splitOnAll = splitWhenever . is
+
+onBoth :: (a -> b) -> (a, a) -> (b, b)
+onBoth f (x, y) = (f x, f y)
+
+unorderedDistinctPairs :: [a] -> [(a, a)]
+unorderedDistinctPairs [] = []
+unorderedDistinctPairs (x : xs) = map (x,) xs ++ unorderedDistinctPairs xs
